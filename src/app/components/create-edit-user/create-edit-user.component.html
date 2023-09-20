@@ -1,0 +1,66 @@
+<form [formGroup]="formData" (ngSubmit)="onSubmit()">
+  <div class="form-header">
+    <div class="form-title">
+      {{user?.id ? 'Edit' : 'Create new'}} user
+    </div>
+    <button (click)="closeForm()">Close</button>
+  </div>
+  <div *ngFor="let item of addAndEditFormFields" class="form-group">
+    <div class="form-label">{{ item.label }}*</div>
+    <input
+      *ngIf="item.type === userFormTypes.Text"
+      type="text"
+      [formControlName]="item.field"
+      class="form-control form-input"
+      [class.error]="!formData.get(item.field)?.valid && formData.get(item.field)?.touched"
+    />
+    <select
+      *ngIf="item.type === userFormTypes.Select"
+      [formControlName]="item.field"
+      [class.error]="!formData.get(item.field)?.valid && formData.get(item.field)?.touched"
+      class="form-control form-input"
+    >
+      <option *ngFor="let option of item.items; let i=index" [value]="option">{{option}}</option>
+    </select>
+    <div
+      *ngIf="formData.get(item.field)?.hasError('required') && formData.get(item.field)?.touched"
+      class="error-message"
+    >
+      {{ item.label }} is required.
+    </div>
+    <div
+      *ngIf="formData.get(item.field)?.hasError('pattern') && formData.get(item.field)?.touched"
+      class="error-message"
+    >
+      {{ item.label }} must contain only alphanumeric characters.
+    </div>
+    <div
+      *ngIf="formData.get(item.field)?.hasError('email') && formData.get(item.field)?.touched"
+      class="error-message"
+    >
+      Please enter a valid email address.
+    </div>
+    <div
+      *ngIf="formData.get(item.field)?.hasError('minlength') && formData.get(item.field)?.touched"
+      class="error-message"
+    >
+      {{ item.label }} must be at least 8 characters long.
+    </div>
+    <div
+      *ngIf="formData.get(item.field)?.hasError('passwordMismatch') && formData.get(item.field)?.touched"
+      class="error-message"
+    >
+      {{ item.label }} Mismatch.
+    </div>
+    <div
+      *ngIf="formData.get(item.field)?.hasError('usernameExist') && formData.get(item.field)?.touched"
+      class="error-message"
+    >
+      {{ item.label }} is already exist.
+    </div>
+  </div>
+
+  <div class="submit-button-wrapper">
+    <button type="submit" class="submit-button">{{user?.id ? 'Save' : 'Create'}}</button>
+  </div>
+</form>

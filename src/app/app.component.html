@@ -1,0 +1,9 @@
+<app-header></app-header>
+
+<div class="main-content">
+  <router-outlet></router-outlet>
+</div>
+
+<app-footer></app-footer>
+
+<app-notification *ngIf="notification" [notification]="notification" (hideNotification)="hideNotification()"></app-notification>

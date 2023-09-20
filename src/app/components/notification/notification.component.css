@@ -1,0 +1,27 @@
+.notification {
+  position: absolute;
+  top: 80px;
+  width: 150px;
+  height: 30px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  color: white;
+
+  .notification__text {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.success {
+  background-color: #579946;
+  box-shadow: #579946 0 0 5px 1px;
+  right: 100px;
+}
+
+.error {
+  background-color: #a60048;
+  box-shadow: #a60048 0 0 5px 1px;
+  left: 100px;
+}

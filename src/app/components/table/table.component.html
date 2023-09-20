@@ -1,0 +1,19 @@
+<div class="table">
+  <div class="table__header">
+    <div *ngFor="let tableField of tableUserFields" class="table__item-wrapper" [style]="{width: tableField.size + '%'}">
+      {{ tableField.label }}
+    </div>
+    <div class="table__item-wrapper action"></div>
+  </div>
+  <div class="table__fields">
+    <div *ngFor="let user of users" class="table__user">
+      <div *ngFor="let tableField of tableUserFields" class="table__item-wrapper table__user-item" [style]="{width: tableField.size + '%'}">
+        {{ user[tableField.field] }}
+      </div>
+      <div class="table__item-wrapper table__user-item action">
+        <button class="action__button" (click)="editUser(user)">Edit</button>
+        <button class="action__button" (click)="removeUser(user)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

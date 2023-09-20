@@ -1,0 +1,36 @@
+.wrapper {
+  padding: 100px;
+}
+
+.create-user-button {
+  display: flex;
+  justify-content: end;
+  width: 70%;
+
+  & button {
+    background-color: cornflowerblue;
+    color: white;
+    padding: 10px;
+    border: none;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: blue;
+    }
+  }
+}
+
+.table {
+  width: 70%;
+}
+
+.create-user-form {
+  width: 25%;
+}
+
+.main-content {
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,0 +1,40 @@
+.table {
+  width: 100%;
+  height: 100%;
+
+  .table__header {
+    display: flex;
+    color: rgb(128, 128, 128);
+    font-size: 10px;
+  }
+
+  .table__item-wrapper {
+    padding: 10px;
+
+    &.action {
+      width: 10%;
+
+      .action__button {
+        width: 100%;
+        background-color: coral;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: orange;
+          color: black;
+        }
+
+        &:not(:last-child) {
+          margin-bottom: 4px;
+        }
+      }
+    }
+  }
+
+  .table__user {
+    display: flex;
+  }
+}

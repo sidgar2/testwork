@@ -1,0 +1,5 @@
+<div *ngIf="notification" class="notification {{ notification.type }}" (click)="clickToNotification()">
+  <div class="notification__text">
+    {{ notification.message }}
+  </div>
+</div>

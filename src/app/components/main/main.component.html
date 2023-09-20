@@ -1,0 +1,13 @@
+<div class="wrapper">
+  <div class="create-user-button">
+    <button (click)="openForm()">Create User</button>
+  </div>
+  <div class="main-content">
+    <div class="table">
+      <app-table (setUserToEdit)="setUserToEdit($event)"></app-table>
+    </div>
+    <div class="create-user-form">
+      <app-create-edit-user *ngIf="user" [user]="user" (removeForm)="removeForm()"></app-create-edit-user>
+    </div>
+  </div>
+</div>
