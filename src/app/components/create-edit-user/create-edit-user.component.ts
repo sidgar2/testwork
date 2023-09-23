@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NotificationTypes, UserFormTypes, UserTableFields} from "../../enums/enums";
 import {User, UserFormField} from "../../interfaces/user.interface";
@@ -11,7 +11,7 @@ import {UsersService} from "../../services/users.service";
   templateUrl: './create-edit-user.component.html',
   styleUrls: ['./create-edit-user.component.css']
 })
-export class CreateEditUserComponent implements OnInit {
+export class CreateEditUserComponent implements OnChanges {
   public formData: FormGroup = new FormGroup({});
   public addAndEditFormFields: UserFormField[] = AddAndEditFormFields;
   public userFormTypes = UserFormTypes;
@@ -23,7 +23,7 @@ export class CreateEditUserComponent implements OnInit {
   constructor(private readonly notificationService: NotificationService, private readonly usersService: UsersService) {
   }
 
-  ngOnInit() {
+  ngOnChanges() {
     this.usersService.usersList.subscribe((users: User[]) => this.usernames = users.map((user: User) => user.username));
     this.formData = new FormGroup({
       [UserTableFields.UserName]: new FormControl(this.user?.[UserTableFields.UserName] || '', [
@@ -51,7 +51,7 @@ export class CreateEditUserComponent implements OnInit {
   }
 
   private isUsernameExist(control: FormControl): { [s: string]: boolean } | null {
-    if (control.value !== this.usernames.includes(control.value) && control.value !== this.user?.username) {
+    if (this.usernames.includes(control.value) && control.value !== this.user?.username) {
       return { 'usernameExist': true };
     }
     return null;
